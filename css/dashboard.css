@@ -1,0 +1,142 @@
+.navbar-nav{
+    text-align: center;
+    margin-left: 20rem;
+    font-size: 1rem;
+}
+.nav-link{
+    color: black;
+
+}
+.header{
+    position: fixed;
+    z-index: 200;
+    display: flex;  
+    top: 0; 
+    left: 0; 
+    right: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px;
+    background:lightgreen;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 10rem;
+}
+.forNavbar{
+    height: 75px;
+}
+
+.header .logo{
+    color:white;
+    margin-left: 3rem;
+    margin-top: 1rem;
+    margin-right: 5rem;
+    font-size: 2rem;
+}
+
+.input-group .form-control{
+    color: #212529;
+    background-color: #fff;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+#btnSearch{
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+.header .logo i{
+    color:white;
+    font-size: 4rem;
+    margin-left: 3rem;
+}
+
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(../images/background.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 15rem;
+}
+
+.home .content{
+    text-align: center;
+    width:60rem;
+}
+
+.home .content h3{
+    color:var(--black);
+    font-size: 2rem;
+}
+
+.home .content h3 span{
+    color:yellowgreen;
+
+}
+
+.home .content p{
+    color:var(--light-color);
+    font-size: 1.5rem;
+    padding:1rem 0;
+    margin-bottom: 5rem;
+
+}
+.home .content a{
+    background-color: lightgreen;
+    width: 20%;
+    height: 3rem;
+    font-size: 1.5rem;
+}
+
+.row{
+  padding: 2%;
+      
+} 
+.stars{
+ color: green;
+}
+
+.row h1{
+    font-size: 25px;
+    height: 4rem;
+    padding-top: 1rem;
+    background-color: none;
+    width: 94.7%;
+    color: #555;
+}
+
+.ecoCategoriesHeader{
+    font-size: 1.2rem;
+    color: lightgray;
+    padding-left: 50px;
+}
+
+.getCategory{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hoverItemCat img{
+    margin:1rem 0;
+    height:8rem;
+    object-fit: contain;
+}
+
+.hoverItemCat{
+    cursor: pointer;
+    padding: 0;
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    outline:var(--outline);
+    text-align: center;
+    width: 20rem;
+    margin-bottom: 3px;
+}
+.hoverItemCat:hover{
+    color: lightgray;
+}

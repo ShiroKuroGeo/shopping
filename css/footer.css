@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+.footer{
+    border: 1px solid black;
+    background: gray;
+    border: none;
+    width: 113%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap:1.5rem;
+}
+.footer .box-container .box h3{
+    font-size: 1.5rem;
+    color:var(--black);
+    padding:1rem 0;
+}
+
+
+.footer .box-container .box h3 i{
+    color:lightgreen;
+}
+
+.footer .box-container .box .links{
+    display: block;
+    font-size: .9rem;
+    color:var(--light-color);
+    padding:1rem 0;
+}
+.footer .box-container .box .links:hover{
+    color: #33ff00;
+}
+ 
+.footer .box-container .box .links i{
+    color:#33ff00;
+    padding-right: .5rem;
+}
+.footer .box-container .box p{
+    line-height: 1.8;
+    font-size: 1.5rem;
+    color:var(--light-color);
+    padding:1rem 0;
+}
+
+.footer .box-container .box .share a{
+    height: 1rem;
+    width: 1rem;
+    line-height:4rem;
+    border-radius: .5rem;
+    font-size: 1.5rem;
+    color:var(--black);
+    margin-right: .2rem;
+    background: #eee;
+    text-align: center;
+}
+
+.footer .box-container .box .share a:hover{
+    background: lightgreen;
+    color: #fff;
+}
+
+.footer .box-container .box .payment-img{
+    margin-top: 2rem;
+    height: 3rem;
+    display: block;
+}
+
+.footer .credit{
+    margin-top: 1rem;
+    padding:1rem;
+    padding-top: .5rem;
+    margin-left: -250px;
+    font-size: .9rem;
+    color:var(--black);
+    border-top: var(--border);
+}
+
+.footer .credit span{
+    color:#33ff00;
+}
