@@ -8,6 +8,9 @@ class user{
     public function doLogin($email, $password){
         return $this->login($email, $password);
     }
+    public function doAddToCart($product, $user, $image, $title, $price, $qt, $total){
+        return $this->addToCart($product, $user, $image, $title, $price, $qt, $total);
+    }
     public function doGetCategories(){
         return $this->getCategory();
     }
@@ -68,6 +71,32 @@ class user{
                     }else{
                         $db->closeConnection();
                         return "404";
+                    }
+                }else{
+                    return "403";
+                }
+            } else {
+                return "403";
+            }
+        } catch (PDOException $th) {
+            return "501";
+        }
+    }
+
+    private function addToCart($product, $user, $image, $title, $price, $qt, $total){
+        try {
+            if ($this->checkLogin($_SESSION['email'],$_SESSION['password'])) {
+                $db = new database();
+                if ($db->getStatus()) {
+                    $stmt = $db->getCon()->prepare($this->registerQuery());
+                    $stmt->execute(array($product, $this->userId(), $user, $image, $title, $price, $qt, $total));
+                    $result = $stmt->fetch();
+                    if (!$result) {
+                        $db->closeConnection();
+                        return "success";
+                    }else{
+                        $db->closeConnection();
+                        return "failed";
                     }
                 }else{
                     return "403";
@@ -222,7 +251,6 @@ class user{
             return false;
         }
     }
-
     //Queries
     private function registerQuery(){
         return "INSERT INTO tbl_user(`fname`, `lname`,`username` ,`address`, `phone`, `email`,`password`) VALUES(?,?,?,?,?,?,?)";
@@ -230,6 +258,11 @@ class user{
     private function loginQuery(){
         return "SELECT * FROM tbl_user WHERE `email` = ? AND `password` = ?";
     }
+
+    private function insertToCart(){
+        return "INSERT INTO `carts` (`product_id`, `user_id`, `username`, `image`, `title`, `price`, `Qt`, `total_price`) VALUES (?,?,?,?,?,?,?,?,?)";
+    }
+
     private function getCategoryQuery(){
         return "SELECT * FROM category";
     }

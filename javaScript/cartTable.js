@@ -41,8 +41,12 @@ var viewCarts =()=>{
 }
 
 var updateFunction =()=>{
-    let checkPrice = document.getElementById("checkPrice").value;
-    alert(checkPrice);
+    var checkedBox = $("#checkPrice:checked").val();
+    alert(checkedBox);
+}
+
+var updateFunction =()=>{
+    
 }
 
 var deleteFunction =(id)=>{

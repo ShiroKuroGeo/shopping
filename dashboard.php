@@ -15,6 +15,26 @@
     
 </head>
 <body style="overflow-x: hidden;">
+    <!-- Modal -->
+    <div class="modal fade" id="addtocart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add this Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="addthisItemToCart">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <nav class="navbar navbar-expand-lg header">
         <div class="container-fluid ms-5">
             <div class="row d-flex justify-content-between ms-auto">
@@ -117,6 +137,9 @@
             </div>
         </section>
     </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addtocart">
+  Launch demo modal
+</button>
     <!-- Footer -->
     <section>
         <?php

@@ -6,11 +6,28 @@ $(document).ready(function(){
     viewCategory();
     viewCartsNumber();
     doEcoProduct();
+    doModalGetEcoProduct();
 });
 
 $('#btnSearch').click(function(){
   doSearch();
 });
+
+//Ongoing
+function addToCart(){
+  // $.ajax({
+  //   type: "POST",
+  //   url: "./source/router.php",
+  //   data: {choice:'doAddToCart',product:$('#Firstname').val(),user:$('#Lastname').val(),image:$('#Username').val(),title:$('#Address').val(),price:$('#phone').val(),qt:$('#Email').val(),total:$('#Password').val()},
+  //   success: function(data){
+  //     alert(data);
+  //   },
+  //   error: function(xhr, ajaxOptions, thrownError){
+  //     alert(thrownError);
+  //   }
+  // });
+}
+
 
 //View Category
 var viewCategory =()=>{
@@ -74,7 +91,7 @@ var doEcoProduct =()=>{
             <i class='fas fa-star-half-alt'></i>
           </div>
           <div>
-            <a href='#' class='btn btn-success'>Add to cart</a>
+            <button type="button" class='btn btn-success' id="addtocart" data-bs-toggle="modal" data-bs-target="#addtocart">Add to cart</button>
             <a href='product_details.php?product_id= ${element.product_id}' class='btn btn-primary'>View me</a>
           </div>
       </div>`;
@@ -86,6 +103,50 @@ var doEcoProduct =()=>{
     }
   });
 }
+
+//get product via modal
+var doModalGetEcoProduct =()=>{
+  $.ajax({
+    type: "POST",
+    url: "./source/router.php",
+    data: {choice: 'doEcoProduct'},
+    success: function(data){
+      var json = JSON.parse(data);
+      var str = "";
+      json.forEach(element => {
+      str =
+      `
+      <div class="input-group input-group-sm ">
+        <input type="text" class="form-control" id="inp${element.product_id}" value="${element.product_id}">
+      </div>
+      <div class="input-group input-group-sm mt-2">
+        <input type="text" class="form-control" id="inputUsername" placeholder="Enter Your name">
+      </div>
+      <div class="input-group input-group-sm mt-2">
+        <input type="text" class="form-control" id="inp${element.image_1}" value="${element.image_1}">
+      </div>
+      <div class="input-group input-group-sm mt-2">
+        <input type="text" class="form-control" id="inp${element.title}" value="${element.title}">
+      </div>
+      <div class="input-group input-group-sm mt-2">
+        <input type="text" class="form-control" id="inp${element.price}" value="${element.price}">
+      </div>
+      <div class="input-group input-group-sm mt-2">
+        <input type="text" class="form-control" id="inpQuantity" placeholder="Enter Quantity">
+      </div>
+      <div class="input-group input-group-sm mt-2">
+        <input type="text" class="form-control" id="inp${element.price}" value="${element.price}">
+      </div>
+      `;
+      });
+      $('#addthisItemToCart').append(str);
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      alert(thrownError);
+    }
+  });
+}
+
 //View Get Products
 var doSearch =()=>{
   $.ajax({
