@@ -6,7 +6,6 @@ $(document).ready(function(){
     viewCategory();
     viewCartsNumber();
     doEcoProduct();
-    doModalGetEcoProduct();
 });
 
 $('#btnSearch').click(function(){
@@ -104,48 +103,6 @@ var doEcoProduct =()=>{
   });
 }
 
-//get product via modal
-var doModalGetEcoProduct =()=>{
-  $.ajax({
-    type: "POST",
-    url: "./source/router.php",
-    data: {choice: 'doEcoProduct'},
-    success: function(data){
-      var json = JSON.parse(data);
-      var str = "";
-      json.forEach(element => {
-      str =
-      `
-      <div class="input-group input-group-sm ">
-        <input type="text" class="form-control" id="inp${element.product_id}" value="${element.product_id}">
-      </div>
-      <div class="input-group input-group-sm mt-2">
-        <input type="text" class="form-control" id="inputUsername" placeholder="Enter Your name">
-      </div>
-      <div class="input-group input-group-sm mt-2">
-        <input type="text" class="form-control" id="inp${element.image_1}" value="${element.image_1}">
-      </div>
-      <div class="input-group input-group-sm mt-2">
-        <input type="text" class="form-control" id="inp${element.title}" value="${element.title}">
-      </div>
-      <div class="input-group input-group-sm mt-2">
-        <input type="text" class="form-control" id="inp${element.price}" value="${element.price}">
-      </div>
-      <div class="input-group input-group-sm mt-2">
-        <input type="text" class="form-control" id="inpQuantity" placeholder="Enter Quantity">
-      </div>
-      <div class="input-group input-group-sm mt-2">
-        <input type="text" class="form-control" id="inp${element.price}" value="${element.price}">
-      </div>
-      `;
-      });
-      $('#addthisItemToCart').append(str);
-    },
-    error: function(xhr, ajaxOptions, thrownError){
-      alert(thrownError);
-    }
-  });
-}
 
 //View Get Products
 var doSearch =()=>{
@@ -159,7 +116,6 @@ var doSearch =()=>{
       if(json.length > 0){
         var str = "";
         json.forEach(element =>{
-          // str = ${Headers("location:")} element.title;
           str = 'search.php?search='+element.title+'&search_now=search';
         });
         window.location.href = str;

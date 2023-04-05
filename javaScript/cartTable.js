@@ -45,9 +45,9 @@ var updateFunction =()=>{
     alert(checkedBox);
 }
 
-var updateFunction =()=>{
+// var updateFunction =()=>{
     
-}
+// }
 
 var deleteFunction =(id)=>{
     alert(id);
