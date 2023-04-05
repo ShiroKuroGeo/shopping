@@ -14,21 +14,23 @@ var viewCarts =()=>{
     success: function(data){
         var json = JSON.parse(data);
         var str = "";
+        var count = 1;
         json.forEach(element => {
             str += 
             `
                 <tr>
-                    <th scope="row">${element.id}</th>
+                    <th scope="row">${count++}</th>
                     <td> <img src="./user_dashboard/product_uploads/${element.image}" width="50" class="image"></td>
-                    <td>${element.price}</td>
+                    <td><input type="checkbox" id="checkPrice" value="${element.price}">${element.price}</td>
                     <td>${element.Qt}</td>
                     <td>${element.total_price}</td>
                     <td>
-                        <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        <button type="button" onclick="updateFunction()" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteFunction(${element.id});">Delete</button>
                     </td>
                 </tr>
             `;
+            count++;
         });
         $('#tblCart').append(str);
     },
@@ -36,4 +38,13 @@ var viewCarts =()=>{
         alert(thrownError);
     }
     });
+}
+
+var updateFunction =()=>{
+    let checkPrice = document.getElementById("checkPrice").value;
+    alert(checkPrice);
+}
+
+var deleteFunction =(id)=>{
+    alert(id);
 }

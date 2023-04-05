@@ -112,32 +112,24 @@ include "functions/index_function.php";
       <th scope="col">Total Price</th>
       <th scope="col">Actions</th>
 
-
-
-
-
-
     </tr>
   </thead>
   <tbody>
   <?php
-                                                       $total=0;
-                                                    
-                                                        $select="SELECT * FROM `carts` order by product_id ";
-                                                        $result=mysqli_query($conn,$select);
-                                                        while($row=mysqli_fetch_array($result)){
-                                                            $user=$row['username'];
-                                                            $product_id=$row['product_id'];
-                                                            $title=$row['title'];
-                                                            $image=$row['image'];
-                                                            $product_price=$row['price'];
-                                                                $price=array($row['price']);
-                                                                $count_price=array_sum($price);
-                                                                $total+=$count_price; 
-                                                        
-                                                            
-                                                        
-                                                        ?> 
+    $total=0;
+
+    $select="SELECT * FROM `carts` order by product_id ";
+    $result=mysqli_query($conn,$select);
+    while($row=mysqli_fetch_array($result)){
+        $user=$row['username'];
+        $product_id=$row['product_id'];
+        $title=$row['title'];
+        $image=$row['image'];
+        $product_price=$row['price'];
+            $price=array($row['price']);
+            $count_price=array_sum($price);
+            $total+=$count_price;
+    ?> 
 
     <tr>
       <th scope="row"><a href='shop.php' class='user'><svg xmlns='http://www.w3.org/2000/svg'fill='currentColor' class='bi bi-shop' viewBox='0 0 16 16'>
