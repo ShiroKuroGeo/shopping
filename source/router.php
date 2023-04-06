@@ -15,6 +15,10 @@ if (isset($_POST['choice'])) {
             $backend = new user();
             echo $backend->doAddToCart($_POST['product'], $_POST['user'], $_POST['image'], $_POST['title'], $_POST['price'], $_POST['qt'], $_POST['total']);
             break;
+        case 'doClickProduct':
+            $backend = new user();
+            echo $backend->doClickProduct($_POST['Item']);
+            break;
         case 'category':
             $backend = new user();
             echo $backend->doGetCategories();

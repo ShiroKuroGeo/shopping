@@ -25,12 +25,12 @@
             </div>
             <div class="modal-body">
                 <div id="addthisItemToCart">
-
+                    
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" id="addThisProductToCart" class="btn btn-primary">Save changes</button>
             </div>
             </div>
         </div>
@@ -137,9 +137,6 @@
             </div>
         </section>
     </div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addtocart">
-  Launch demo modal
-</button>
     <!-- Footer -->
     <section>
         <?php

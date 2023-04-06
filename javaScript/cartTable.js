@@ -4,6 +4,7 @@ $(document).ready(function(){
         window.location.href = "./.";
     }
     viewCarts();
+    viewCartsNumber();
 });
 
 var viewCarts =()=>{
@@ -39,6 +40,21 @@ var viewCarts =()=>{
     }
     });
 }
+
+var viewCartsNumber =()=>{
+    $.ajax({
+      type: "POST",
+      url: "./source/router.php",
+      data: {choice: 'cartsNumber'},
+      success: function(data){
+        var json = JSON.parse(data);
+        $('#cartNumber').append(json.length);
+      },
+      error: function(xhr, ajaxOptions, thrownError){
+        alert(thrownError);
+      }
+    });
+  }
 
 var updateFunction =()=>{
     var checkedBox = $("#checkPrice:checked").val();

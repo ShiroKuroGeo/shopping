@@ -12,21 +12,24 @@ $('#btnSearch').click(function(){
   doSearch();
 });
 
-//Ongoing
-function addToCart(){
-  // $.ajax({
-  //   type: "POST",
-  //   url: "./source/router.php",
-  //   data: {choice:'doAddToCart',product:$('#Firstname').val(),user:$('#Lastname').val(),image:$('#Username').val(),title:$('#Address').val(),price:$('#phone').val(),qt:$('#Email').val(),total:$('#Password').val()},
-  //   success: function(data){
-  //     alert(data);
-  //   },
-  //   error: function(xhr, ajaxOptions, thrownError){
-  //     alert(thrownError);
-  //   }
-  // });
-}
+$('#addThisProductToCart').click(function(){
+  prodcutAddThisToCart();
+});
 
+
+function prodcutAddThisToCart(){
+  $.ajax({
+    type: "POST",
+    url: "./source/router.php",
+    data: {choice:'doAddToCart',product:$('#productIDAddThisCart').val(),user:$('#usernameAddThisCart').val(),image:$('#imageAddThisCart').val(),title:$('#titleAddThisCart').val(),price:$('#priceAddThisCart').val(),qt:$('#quantityAddThisCart').val(),total:$('#totalAddThisCart').val()},
+    success: function(data){
+      alert(data);
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      alert(thrownError);
+    }
+  });
+}
 
 //View Category
 var viewCategory =()=>{
@@ -89,8 +92,8 @@ var doEcoProduct =()=>{
             <i class='fas fa-star'></i>
             <i class='fas fa-star-half-alt'></i>
           </div>
-          <div>
-            <button type="button" class='btn btn-success' id="addtocart" data-bs-toggle="modal" data-bs-target="#addtocart">Add to cart</button>
+          <div>'
+            <button type="button" class='btn btn-success' onclick="toModal(${element.product_id});" data-bs-toggle="modal" data-bs-target="#addtocart">Add to cart</button>
             <a href='product_details.php?product_id= ${element.product_id}' class='btn btn-primary'>View me</a>
           </div>
       </div>`;
@@ -103,7 +106,46 @@ var doEcoProduct =()=>{
   });
 }
 
-
+function toModal(id){
+  $.ajax({
+    type: "POST",
+    url: "./source/router.php",
+    data: {choice: 'doClickProduct', Item:id},
+    success: function(data){
+      var json = JSON.parse(data);
+      str = "";
+      json.forEach(Element => {
+        str = `
+          <div class="input-group">
+            <input type="text" id="productIDAddThisCart" class="form-control" value="${Element.product_id}">
+          </div>
+          <div class="input-group mt-2">
+            <input type="text" id="usernameAddThisCart" class="form-control" placeholder="Enter Username">
+          </div>
+          <div class="input-group mt-2">
+            <input type="text" id="imageAddThisCart" class="form-control" value="${Element.image_1}">
+          </div>
+          <div class="input-group mt-2">
+            <input type="text" id="titleAddThisCart" class="form-control" value="${Element.title}">
+          </div>
+          <div class="input-group mt-2">
+            <input type="text" id="priceAddThisCart" class="form-control" value="${Element.price}">
+          </div>
+          <div class="input-group mt-2">
+            <input type="text" id="quantityAddThisCart" class="form-control" placeholder="Quantity value">
+          </div>
+          <div class="input-group mt-2">
+            <input type="text" id="totalAddThisCart" class="form-control" value="${Element.price}">
+          </div>
+        `;
+      });
+      $('#addthisItemToCart').empty().append(str);
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      alert(thrownError);
+    }
+  });
+}
 //View Get Products
 var doSearch =()=>{
   $.ajax({

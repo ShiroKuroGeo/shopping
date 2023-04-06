@@ -7,7 +7,6 @@
     <title>Login</title>
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/login.css">
-    <script src="js/sweetalert.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 <!-- font awesome cdn link  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -55,7 +54,7 @@
   <!-- scrit for Jquery -->
   <script src="javaScript/jquery.js"></script>
   <!-- footer section ends -->
-  <script src="js/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- <script src="js/sweetalert/dist/sweetalert.min.js"></script> -->
   <!-- script for login js -->
   <script src="javaScript/UserLogin.js"></script>
 </body>
