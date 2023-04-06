@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/footer.css">
     
+    <!-- Still on the go -->
 </head>
 <body >
     <nav class="navbar navbar-expand-lg header">
@@ -77,13 +78,13 @@
         </div>
     </nav>
     
-    <section>
+    <section class="mb-5 pb-5">
         <div class="forNavbar">
             <!-- For navbar sticky only -->
         </div>
         <div class="mt-5">
             <div class="container">
-                <table class="table border text-center">
+                <table class="table border text-center" id="products-table" style="overflow-y: scroll;">
                     <thead class="fst-italic">
                         <tr>
                             <th scope="col">Shop</th>
@@ -95,37 +96,23 @@
                         </tr>
                     </thead>
                     <tbody class="border" id="tblCart">
-                        <input type="checkbox" value="">
+
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-end align-items-end">
+                    Total Cost:<span id="totalCostOfCart" class="ms-4 me-3"></span>
+                    <button type="button" class="btn btn-outline-success">Check Out</button>
+                </div>
             </div>
         </div>
     </section>
     <!-- Footer -->
-    <!-- <section>
+    <section>
         <?php
             include './includes/footer.php';
         ?>
-    </section> -->
+    </section>
     <!-- Jquery -->
-    <!-- Modal -->
-    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <script src="javaScript/jquery.js"></script>
     <script src="javaScript/toggle.js"></script>
     <script src="javaScript/cartTable.js"></script>

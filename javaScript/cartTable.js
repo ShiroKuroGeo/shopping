@@ -4,8 +4,18 @@ $(document).ready(function(){
         window.location.href = "./.";
     }
     viewCarts();
-    viewCartsNumber();
+    viewCartsNumber();viewTotalCost()
 });
+
+function viewTotalCost(){
+
+    var checkedPrice = $('#checkPrice');
+    var totalCost = $('#totalCostOfCart');
+
+    checkedPrice.addEventListener("keyup", function(e){
+        totalCost.innerHTML = checkedPrice.value;
+    });
+}
 
 var viewCarts =()=>{
     $.ajax({
@@ -19,14 +29,14 @@ var viewCarts =()=>{
         json.forEach(element => {
             str += 
             `
-                <tr>
-                    <th scope="row">${count++}</th>
+                <tr style="height: -10px;">
+                    <th scope="row">${count}</th>
                     <td> <img src="./user_dashboard/product_uploads/${element.image}" width="50" class="image"></td>
-                    <td><input type="checkbox" id="checkPrice" value="${element.price}">${element.price}</td>
-                    <td>${element.Qt}</td>
-                    <td>${element.total_price}</td>
+                    <td><input type="checkbox" id="checkPrice" value="${element.price}"> ${element.price}</td>
+                    <td><input type="text" id="updateNumber" value="${element.Qt}"></td>
+                    <td>${element.price * element.Qt}</td>
                     <td>
-                        <button type="button" onclick="updateFunction()" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button>
+                        <button type="button" onclick="updateFunction(${element.id})" class="btn btn-sm btn-outline-info">Update</button>
                         <button class="btn btn-sm btn-outline-danger" onclick="deleteFunction(${element.id});">Delete</button>
                     </td>
                 </tr>
@@ -55,16 +65,45 @@ var viewCartsNumber =()=>{
       }
     });
   }
-
-var updateFunction =()=>{
-    var checkedBox = $("#checkPrice:checked").val();
-    alert(checkedBox);
+  
+var updateFunction =(id)=>{
+    if(confirm("Are you sure you want to update this item")){
+        $.ajax({
+            type: "POST",
+            url: "./source/router.php",
+            data: {choice: 'doUpdateCartQuery', Quantity:$('#updateNumber').val(), ID:id},
+            success: function(data){
+                if(data == 200){
+                    window.location.href = "./dashCartTable.html";
+                }else{
+                    alert("Updated Failed!");
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+              alert(thrownError);
+            }
+        });
+    }else{
+        window.location.href = "dashCartTable.html";
+    }
 }
 
-// var updateFunction =()=>{
-    
-// }
-
 var deleteFunction =(id)=>{
-    alert(id);
+    if(confirm("Are you sure you want to delete this item")){
+        $.ajax({
+            type: "POST",
+            url: "./source/router.php",
+            data: {choice: 'doDeleteCartQuery', ID:id},
+            success: function(data){
+                if(data == 200){
+                    window.location.href = "./dashCartTable.html";
+                }else{
+                    alert("Deleted Failed!");
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert(thrownError);
+            }
+        });
+    }
 }

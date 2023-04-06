@@ -23,7 +23,11 @@ function prodcutAddThisToCart(){
     url: "./source/router.php",
     data: {choice:'doAddToCart',product:$('#productIDAddThisCart').val(),user:$('#usernameAddThisCart').val(),image:$('#imageAddThisCart').val(),title:$('#titleAddThisCart').val(),price:$('#priceAddThisCart').val(),qt:$('#quantityAddThisCart').val(),total:$('#totalAddThisCart').val()},
     success: function(data){
-      alert(data);
+      if(data == 200){
+        window.location.href = "dashboard.php";
+      }else{
+        alert("Something is wrong in adding this product!");
+      }
     },
     error: function(xhr, ajaxOptions, thrownError){
       alert(thrownError);

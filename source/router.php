@@ -39,6 +39,14 @@ if (isset($_POST['choice'])) {
             $backend = new user();
             echo $backend->doGetCart();
             break;
+        case 'doUpdateCartQuery':
+            $backend = new user();
+            echo $backend->doUpdateCartQuery($_POST['Quantity'], $_POST['ID']);
+            break;
+        case 'doDeleteCartQuery':
+            $backend = new user();
+            echo $backend->doDeleteCartQuery($_POST['ID']);
+            break;
         case 'logout':
             session_unset();
             session_destroy();

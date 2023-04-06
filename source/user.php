@@ -29,6 +29,12 @@ class user{
     public function doClickProduct($item){
         return $this->clickProduct($item);
     }
+    public function doUpdateCartQuery($qt, $id){
+        return $this->updateCartQuery($qt, $id);
+    }
+    public function doDeleteCartQuery($id){
+        return $this->deleteCarts($id);
+    }
 
     private function register($fname, $lname, $user, $address, $phone, $email, $pass){
         try {
@@ -221,6 +227,32 @@ class user{
         }
     }
 
+    private function deleteCarts($id){
+        try{
+            if($this->checkLogin($_SESSION['email'],$_SESSION['password'])){
+                $db = new database();
+                if($db->getStatus()){
+                    $stmt = $db->getCon()->prepare($this->getDeleteCartQuery());
+                    $stmt->execute(array($id));
+                    $result = $stmt->fetch();
+                    if (!$result) {
+                        $db->closeConnection();
+                        return "200";
+                    }else{
+                        $db->closeConnection();
+                        return "404";
+                    }
+                }else{
+                    return "403";
+                }
+            }else{
+                return "403";
+            }
+        }catch(PDOExeption $th){
+            return "501";
+        }
+    }
+
     private function cartTable(){
         try{
             if($this->checkLogin($_SESSION['email'],$_SESSION['password'])){
@@ -231,6 +263,32 @@ class user{
                     $result = $stmt->fetchAll();
                     $db->closeConnection();
                     return json_encode($result);
+                }else{
+                    return "403";
+                }
+            }else{
+                return "403";
+            }
+        }catch(PDOExeption $th){
+            return "501";
+        }
+    }
+
+    private function updateCartQuery($qt, $id){
+        try{
+            if($this->checkLogin($_SESSION['email'],$_SESSION['password'])){
+                $db = new database();
+                if($db->getStatus()){
+                    $stmt = $db->getCon()->prepare($this->getUpdateCartQuery());
+                    $stmt->execute(array($qt, $id));
+                    $result = $stmt->fetch();
+                    if (!$result) {
+                        $db->closeConnection();
+                        return "200";
+                    }else{
+                        $db->closeConnection();
+                        return "404";
+                    }
                 }else{
                     return "403";
                 }
@@ -305,6 +363,12 @@ class user{
     }
     private function getClickProductQuery(){
         return "SELECT * FROM `products` WHERE product_id = ?";
+    }
+    private function getUpdateCartQuery(){
+        return "UPDATE `carts` SET `Qt` = ? WHERE id = ?";
+    }
+    private function getDeleteCartQuery(){
+        return "DELETE FROM `carts` where id = ?";
     }
     
 }

@@ -62,7 +62,7 @@
                         <div class="navbar-nav">
                             <a class="nav-link active mt-1" aria-current="page" href="userDashboard.html">Home</a>
                             <a class="nav-link active mt-1" href="product.php">Product</a>
-                            <a class="nav-link active mt-1" href="dashCartTable.html"><i class="fa fa-shopping-cart" aria-hidden="true"><sup id="cartNumber"></sup></i></a>
+                            <a class="nav-link active mt-1" href="dashCartTable.php"><i class="fa fa-shopping-cart" aria-hidden="true"><sup id="cartNumber"></sup></i></a>
                             <a class="nav-link active" href="#"><img src="./images/profile.png" width="60px" class="profile" onclick="toggleMenu()"></a>
                             <nav>
                                 <div class="sub-menu-wrap" id="subMenu">
